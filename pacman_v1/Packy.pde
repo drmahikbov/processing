@@ -1,8 +1,8 @@
 class Packy {
 
   // Declare the initial positions
-  float start_pos_x = 12;
-  float start_pos_y = 18;
+  float start_pos_x = 14;
+  float start_pos_y = 23;
   float x = new Map().cell_width*start_pos_x;
   float y = new Map().cell_height*start_pos_y;
   float size = (new Map().cell_width - 1);
@@ -24,21 +24,20 @@ class Packy {
   } 
    
   boolean canGoUp() {
-    float pacTilex = this.x/new Map().cell_width;
-    float pacTiley = this.y/new Map().cell_height;
+    int pacTilex = (int) (this.x/new Map().cell_width);
+    int pacTiley = (int) (this.y/new Map().cell_height);
     //println("Pac is at position: " + pacTilex);
-    int identifier = new Map().mappy.get((int)pacTiley-1).get((int)pacTilex).id;
-    
+    int identifier = new Map().map[pacTiley--][pacTilex];
     println(identifier == 0 ? "Wall above" : "Free to go up");
     // True if not a wall
     return identifier == 0 ? false : true;
   }
   
   boolean canGoLeft() {
-    float pacTilex = this.x/new Map().cell_width;
-    float pacTiley = this.y/new Map().cell_height;
+    int pacTilex = (int) (this.x/new Map().cell_width);
+    int pacTiley = (int) (this.y/new Map().cell_height);
 
-    int identifier = new Map().mappy.get((int)pacTiley).get((int)pacTilex-1).id;
+    int identifier = new Map().map[pacTiley][pacTilex--];
     
     println(identifier == 0 ? "Wall on the left side" : "Free to go left");
     // True if not a wall
@@ -46,10 +45,11 @@ class Packy {
   }
   
   boolean canGoDown() {
-    float pacTilex = this.x/new Map().cell_width;
-    float pacTiley = this.y/new Map().cell_height;
+    int pacTilex = (int) (this.x/new Map().cell_width);
+    int pacTiley = (int) (this.y/new Map().cell_height);
 
-    int identifier = new Map().mappy.get((int)pacTiley+1).get((int)pacTilex).id;
+    int identifier = new Map().map[pacTiley++][pacTilex];
+
     
     println(identifier == 0 ? "Wall below" : "Free to go below");
     // True if not a wall
@@ -57,10 +57,11 @@ class Packy {
   }
   
   boolean canGoRight() {
-    float pacTilex = this.x/new Map().cell_width;
-    float pacTiley = this.y/new Map().cell_height;
+    int pacTilex = (int) (this.x/new Map().cell_width);
+    int pacTiley = (int) (this.y/new Map().cell_height);
 
-    int identifier = new Map().mappy.get((int)pacTiley).get((int)pacTilex+1).id;
+    int identifier = new Map().map[pacTiley][pacTilex++];
+
     
     println(identifier == 0 ? "Wall on the right" : "Free to go right");
     // True if not a wall
