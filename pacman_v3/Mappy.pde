@@ -58,16 +58,16 @@ public class Mappy {
       for(int j = 0; j < array[0].length; j++) {
         
         if(!(array[i][j] == 1)) {
-        stroke(0);
+        stroke(255);
         fill(getColor(i, j));
         rect(j*cell_width, i*cell_height, cell_width, cell_height);
         //println(cell_width + " " + cell_height);
         } else {
         noStroke();
         fill(getColor(i, j));
-        ellipseMode(CENTER);
+
         ellipse(j*cell_width + cell_width/2, i*cell_width + cell_height/2, candy_size, candy_size);
-        ellipseMode(CORNER);
+  
         }
       }
     }
