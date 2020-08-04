@@ -23,40 +23,54 @@ void draw() {
   pac.updatePac(xspeed, yspeed);
   pac.drawPac();
  
+  println("pac is not centered");
   // check if pointers are in the same tile
   if(pac.pointersAreCenteredX() && pac.pointersAreCenteredY()) {
     
-    println("Pac is centered");
+
     // then check if he can move
     xspeed = pac.checkForWallLeft() ? 0 : xspeed;
     xspeed = pac.checkForWallRight() ? 0 : xspeed;
 
     yspeed = pac.checkForWallUp() ? 0 : yspeed;
-    yspeed = pac.checkForWallDown() ? 0 : yspeed;
+    yspeed = pac.checkForWallDown() ? 0 : yspeed; 
   } // else nothing
  
   
   // Check for user movement input
   if (keyPressed) {
     
-    if(key == 'w') {
-      yspeed = -speed_increment;
-      xspeed = 0;
+    if(key == 'w' && !pac.checkForWallUp()) {
+      
+      if(pac.pointersAreCenteredX()) {
+        yspeed = -speed_increment;
+        xspeed = 0;
+      } else if(pac.pointersAreCenteredY()) {
+        // Do nothing
+      }
+      
     }
     
-      if(key == 's') {
-      yspeed = speed_increment;
-      xspeed = 0;
+      if(key == 's' && !pac.checkForWallDown()) {
+        if(pac.pointersAreCenteredX()) {
+             yspeed = speed_increment;
+             xspeed = 0;
+          
+        }
     }
     
-      if(key == 'a') {
-      yspeed = 0;
-      xspeed = -speed_increment;
+      if(key == 'a' && !pac.checkForWallLeft()) {
+        if(pac.pointersAreCenteredY()) {
+             yspeed = 0;
+             xspeed = -speed_increment;
+        }
     }
     
-      if(key == 'd') {
-      yspeed = 0;
-      xspeed = speed_increment;
+      if(key == 'd' && !pac.checkForWallRight()) {
+        if(pac.pointersAreCenteredY()) {
+            yspeed = 0;
+            xspeed = speed_increment;
+        }
     }
     
   }

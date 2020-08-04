@@ -20,7 +20,7 @@ class Packy {
   void drawPac() {
     noStroke();
     fill(c);
-    ellipse(this.x , this.y , cell_size, cell_size);
+    ellipse(this.x, this.y, cell_size, cell_size);
   }
   
 
@@ -52,15 +52,12 @@ class Packy {
   
   boolean pointersAreCenteredX() {
     
-    //println((this.x-(cell_size/2)) + " " + (this.x+(cell_size/2)));
-    println("Pac is between: " + (this.x-(cell_size/2)) + " and " + (this.x+(cell_size/2)));
-    println();
-    
+  
     // If horizontal points are in the same tile
     if( fx(this.x-(cell_size/2)) == fx(this.x+(cell_size/2)) ) {
     
        // Then pacman can check for walls
-       println("yolo");
+       println("Horizontally");
        return true;
     } else {
       return false;
@@ -70,58 +67,41 @@ class Packy {
    boolean pointersAreCenteredY() {
     
     // If vertical points are in the same tile
-    if( fy(this.y-(cell_size/2)) == fy(this.y)+(cell_size/2)) {
+    if( fy(this.y-(cell_size/2)) == fy(this.y+(cell_size/2))) {
     
        // Then pacman can check for walls
-       println("y is centered");
+       println("Vertically centered");
        return true;
     } 
   return false;
   }
   
-  boolean checkForWallRight() {
-    
-    // If the tile to the right is a wall
-    if(array[fy(this.y)][fx(this.x)+1] == 0) {
-      return false;
-    } 
-    
-    return true;
-  }
+
   
    boolean checkForWallLeft() {
     
     // If the tile to the left is a wall
-    if(array[fy(this.y)][fx(this.x)-1] == 0) {
-      return false;
-    }
+    return (array[fy(this.y)][fx(this.x)-1] == 0) ? true : false;
+  }
+  
+    boolean checkForWallRight() {
     
-    return true;
+    println("");
+    // If the tile to the right is a wall return false else true
+    return (array[fy(this.y)][fx(this.x)+1] == 0) ? true : false;
   }
   
    boolean checkForWallUp() {
     
     // If the tile above is a wall
-    if(array[fy(this.y)-1][fx(this.x)] == 0) {
-      return false;
-    }
-    
-    return true;
+    return (array[fy(this.y)-1][fx(this.x)] == 0) ? true : false;
   }
   
    boolean checkForWallDown() {
     
     // If the tile below is a wall
-    if(array[fy(this.y)+1][fx(this.x)] == 0) {
-      return false;
-    }
-    
-    return true;
+     return (array[fy(this.y)+1][fx(this.x)] == 0) ? true : false;
   }
   
-  
-  
-
-
-  
+ 
 }

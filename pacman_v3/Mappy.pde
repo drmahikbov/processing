@@ -61,7 +61,7 @@ public class Mappy {
         stroke(255);
         fill(getColor(i, j));
         rect(j*cell_width, i*cell_height, cell_width, cell_height);
-        //println(cell_width + " " + cell_height);
+        
         } else {
         noStroke();
         fill(getColor(i, j));
